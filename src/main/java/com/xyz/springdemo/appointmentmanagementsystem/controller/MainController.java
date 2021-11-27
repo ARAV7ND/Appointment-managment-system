@@ -19,6 +19,7 @@ public class MainController {
     public String login(){
         return "login";
     }
+
     @GetMapping("/")
     public String home(Model model,Principal principal){
         User user = userRepository.findByUsername(principal.getName());

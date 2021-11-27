@@ -1,8 +1,5 @@
 package com.xyz.springdemo.appointmentmanagementsystem.service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import com.xyz.springdemo.appointmentmanagementsystem.dto.UserRegistrationDto;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.Role;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.User;
@@ -14,9 +11,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.swing.text.html.Option;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class DoctorServiceImpl implements DoctorService{
+
     @Autowired
     private UserRepository userRepository;
 
@@ -24,31 +29,33 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
+    @Transactional
     public User save(UserRegistrationDto registrationDto) {
         User user = new User(registrationDto.getFirstName(),
                 registrationDto.getLastName(), registrationDto.getUsername(),
-                passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER",registrationDto.getUsername())));
+                passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_DOCTOR",registrationDto.getUsername())));
         user.setId(registrationDto.getId());
         return userRepository.save(user);
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private List<? extends GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority())).collect(Collectors.toList());
-    }
-
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.findAllDoctors();
     }
 
+    @Override
+    public void deleteById(int id) {
+            userRepository.deleteById(id);
+    }
+
+    @Override
+    public User findById(int id) {
+        Optional<User> result = userRepository.findById(id);
+        User user = null;
+        if(result.isPresent()){
+            user = result.get();
+        }else{
+            throw new RuntimeException("404!! Doctor not found with id "+id);
+        }
+        return user;
+    }
 }

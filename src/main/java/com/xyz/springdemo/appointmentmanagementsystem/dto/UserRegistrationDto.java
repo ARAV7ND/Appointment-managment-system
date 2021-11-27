@@ -5,6 +5,8 @@ import javax.validation.constraints.NotEmpty;
 
 public class UserRegistrationDto {
 
+    private int id;
+
     @NotEmpty(message = "is required")
     private String firstName;
 
@@ -57,5 +59,13 @@ public class UserRegistrationDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
