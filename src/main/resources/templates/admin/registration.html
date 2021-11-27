@@ -26,7 +26,6 @@
                 <form  th:action="@{/doc/save}" method="post" th:object="${doctors}">
 
                     <input type="hidden" th:field="*{id}" />
-                    <span th:text="*{id}"></span>
                     <div class="form-group">
                         <label class="control-label" for="firstName">First Name</label>
                         <input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus"/>

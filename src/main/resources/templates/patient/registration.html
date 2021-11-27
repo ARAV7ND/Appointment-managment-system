@@ -16,17 +16,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div th:if="${param.success}">
-                          <div class="alert alert-info">
-                                 Doctor Added successfully ..!
-                          </div>
-                </div>
 
                 <h1>Registration</h1>
                 <form  th:action="@{/patient/save}" method="post" th:object="${patient}">
 
                     <input type="hidden" th:field="*{id}" />
-                    <span th:text="*{id}"></span>
                     <div class="form-group">
                         <label class="control-label" for="firstName">First Name</label>
                         <input id="firstName" class="form-control" th:field="*{firstName}" required autofocus="autofocus"/>
