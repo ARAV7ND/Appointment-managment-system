@@ -18,14 +18,14 @@ public class AdminController {
     @Autowired
     private AdminService commonService;
 
-    @RequestMapping("/doctorList")
+    @GetMapping("/doctorList")
     public String doctorsList(Model model){
         List<User> user = commonService.findAllDoctors();
         model.addAttribute("users",user);
         return "admin/list";
     }
 
-    @RequestMapping("/patientList")
+    @GetMapping("/patientList")
     public String patientLis(Model model){
         List<User> user = commonService.findAllPatients();
         model.addAttribute("users",user);
