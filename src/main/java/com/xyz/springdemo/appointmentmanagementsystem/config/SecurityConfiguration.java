@@ -45,24 +45,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication().dataSource(dataSource)
-//                .usersByUsernameQuery("select email,password,enabled "
-//                        + "from users "
-//                        + "where username = ?")
-//                .authoritiesByUsernameQuery("select email,authority "
-//                        + "from authorities "
-//                        + "where username = ?");
-//    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/registration").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/patient/**").hasRole("USER")
-                .antMatchers("/admin/**","/doctor/**","/patient/**").hasRole("ADMIN")
-                .antMatchers("/doctor/**").hasRole("DOCTOR")
+//                .antMatchers("/patient/**").hasRole("USER")
+//                .antMatchers("/admin/**","/doctor/**","/patient/**").hasRole("ADMIN")
+//                .antMatchers("/doctor/**").hasRole("DOCTOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

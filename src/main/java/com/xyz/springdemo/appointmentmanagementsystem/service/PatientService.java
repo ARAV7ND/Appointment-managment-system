@@ -10,5 +10,6 @@ public interface PatientService {
     List<User> findAll();
     void deleteById(int id);
     User findById(int id);
-    List<User> findAllPatients();
+    List<User> findAllDoctors();
+    int findIdByUsername(String username);
 }

@@ -10,11 +10,9 @@
 </head>
 
 <body>
-
-<h3>Patients Directory</h3>
 <hr>
 <div class="container">
-    <a th:href="@{/patient/add}" class="btn btn-primary btn-sm mb-3">Add Patient</a>
+    <a th:href="@{/admin/add}" class="btn btn-primary btn-sm mb-3">Add Doctor</a>
     <a th:href="@{/admin}" class="btn btn-primary btn-sm mb-3">Home</a>
 
     <table class="table table-bordered table-striped">
@@ -28,14 +26,14 @@
         </thead>
 
         <tbody>
-        <tr th:each="tempPatient : ${patient}">
+        <tr th:each="user : ${users}">
 
-            <td th:text="${tempPatient.firstName}" />
-            <td th:text="${tempPatient.lastName}" />
-            <td th:text="${tempPatient.username}" />
+            <td th:text="${user.firstName}" />
+            <td th:text="${user.lastName}" />
+            <td th:text="${user.username}" />
             <td>
-                <a th:href="@{/patient/update(id=${tempPatient.id})}" class="btn btn-info btn-sm">Update</a>
-                <a th:href="@{/patient/delete(id=${tempPatient.id})}" class="btn btn-info btn-sm">Delete</a>
+                <a th:href="@{/admin/update(id=${user.id})}" class="btn btn-info btn-sm">Update</a>
+                <a th:href="@{/admin/delete(id=${user.id})}" class="btn btn-info btn-sm">Delete</a>
             </td>
 
         </tr>

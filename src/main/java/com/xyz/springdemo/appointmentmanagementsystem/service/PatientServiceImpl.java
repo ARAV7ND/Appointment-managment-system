@@ -54,7 +54,12 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public List<User> findAllPatients() {
-        return userRepository.findAllPatients();
+    public List<User> findAllDoctors() {
+        return userRepository.findAllDoctors();
+    }
+
+    @Override
+    public int findIdByUsername(String username) {
+        return userRepository.findIdByUsername(username);
     }
 }

@@ -1,8 +1,10 @@
 package com.xyz.springdemo.appointmentmanagementsystem.service;
 
 import com.xyz.springdemo.appointmentmanagementsystem.dto.UserRegistrationDto;
+import com.xyz.springdemo.appointmentmanagementsystem.entity.Appointment;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.Role;
 import com.xyz.springdemo.appointmentmanagementsystem.entity.User;
+import com.xyz.springdemo.appointmentmanagementsystem.repository.AppointmentRepository;
 import com.xyz.springdemo.appointmentmanagementsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,8 +30,10 @@ public class DoctorServiceImpl implements DoctorService{
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AppointmentRepository appointmentRepository;
+
     @Override
-    @Transactional
     public User save(UserRegistrationDto registrationDto) {
         User user = new User(registrationDto.getFirstName(),
                 registrationDto.getLastName(), registrationDto.getUsername(),
@@ -44,7 +48,7 @@ public class DoctorServiceImpl implements DoctorService{
 
     @Override
     public void deleteById(int id) {
-            userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
@@ -58,4 +62,9 @@ public class DoctorServiceImpl implements DoctorService{
         }
         return user;
     }
+    public List<Appointment> findAllAppointmentsByDoctorId(int doctorId){
+        List<Appointment> appointmentList = appointmentRepository.findAllById(doctorId);
+        return appointmentList;
+    }
+
 }

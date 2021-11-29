@@ -2,6 +2,7 @@ package com.xyz.springdemo.appointmentmanagementsystem.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 public class UserRegistrationDto {
 
@@ -18,6 +19,7 @@ public class UserRegistrationDto {
 
     @NotEmpty(message = "is required")
     private String password;
+
 
     public UserRegistrationDto() {
     }
@@ -68,4 +70,6 @@ public class UserRegistrationDto {
     public void setId(int id) {
         this.id = id;
     }
+
+
 }

@@ -10,32 +10,28 @@
 </head>
 
 <body>
-
-<h3>Doctor Directory</h3>
 <hr>
 <div class="container">
-    <a th:href="@{/doc/add}" class="btn btn-primary btn-sm mb-3">Add Doctor</a>
-    <a th:href="@{/admin}" class="btn btn-primary btn-sm mb-3">Home</a>
-
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th>Patient Name</th>
+            <th>Appointment date and time</th>
+            <th>phone</th>
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="tempDoctor : ${doctors}">
+        <tr th:each="user : ${appointmentList}">
 
-            <td th:text="${tempDoctor.firstName}" />
-            <td th:text="${tempDoctor.lastName}" />
-            <td th:text="${tempDoctor.username}" />
             <td>
-                <a th:href="@{/doc/update(id=${tempDoctor.id})}" class="btn btn-info btn-sm">Update</a>
-                <a th:href="@{/doc/delete(id=${tempDoctor.id})}" class="btn btn-info btn-sm">Delete</a>
+                <span th:text="${user.userId}"></span>
+            </td>
+            <td>
+                <span>28/07/2021: 03:30 pm</span>
+            </td>
+            <td>
+                <span>9848012345</span>
             </td>
 
         </tr>

@@ -19,7 +19,7 @@
             </h3>
             <div class="col-md-6">
                 <div class="form-group mt-5 mb-3">
-                    <a href="/" th:href="@{/doc/list}" class="btn btn-info btn-sm">Book an appointment</a>
+                    <a href="/" th:href="@{/patient/doctorList(id=${user.id})}" class="btn btn-info btn-sm">Book an appointment</a>
                 </div>
             </div>
             <div class="form-group">

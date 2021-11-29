@@ -16,14 +16,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <div th:if="${param.success}">
-                          <div class="alert alert-info">
-                                 Doctor Added successfully ..!
-                          </div>
-                </div>
 
                 <h1>Registration</h1>
-                <form  th:action="@{/doc/save}" method="post" th:object="${doctors}">
+                <form  th:action="@{/admin/save}" method="post" th:object="${users}">
 
                     <input type="hidden" th:field="*{id}" />
                     <div class="form-group">

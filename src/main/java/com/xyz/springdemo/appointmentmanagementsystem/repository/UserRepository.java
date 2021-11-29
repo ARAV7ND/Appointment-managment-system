@@ -22,4 +22,9 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     @Query(value = "select * from users u join users_roles ur on u.id = ur.user_id  join roles r on r.id=ur.role_id  where authority like '%USER%' ",nativeQuery = true)
     List<User> findAllPatients();
 
+    @Query(value = "select r.authority from users u join users_roles ur on u.id = ur.user_id  join roles r on r.id=ur.role_id  where u.username = ?1 ",nativeQuery = true)
+    String findRoleByUsername(String username);
+
+    @Query(value = "select id from users where username = ?1 ",nativeQuery = true)
+    int findIdByUsername(String username);
 }

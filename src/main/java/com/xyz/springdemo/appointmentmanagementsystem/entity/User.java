@@ -22,6 +22,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    private int temp;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -32,6 +34,9 @@ public class User {
 
     private List<Role> roles;
 
+//    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//
+//    private List<Appointment> appointments;
     public User() {
 
     }
@@ -82,4 +87,5 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
 }
